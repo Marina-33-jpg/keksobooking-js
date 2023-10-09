@@ -98,11 +98,11 @@ const createOffer = (loc) => ({
   checkin:  getRandomArrayElement(['12:00', '13:00','14:00']),
   checkout: getRandomArrayElement(['12:00', '13:00','14:00']),
   features: getRandomArrayElement(Features),
-  discription: createMessage(),
+  description: createMessage(),
   photos : getRandomArrayElement(PhotoUrls),
 });
 
-const createSuccess = (index) => {
+const createAdvertisement = (index) => {
   const a = createLocation();
   return {
   location: a,
@@ -113,6 +113,6 @@ const createSuccess = (index) => {
 }
 
 //собирает в массив из 10 элементов из обьектов createSuccess
-const getSuccess = () => Array.from({length:3}, (_, index) => createSuccess(index+1) );
+const getAdvertisements = () => Array.from({length:3}, (_, index) => createAdvertisement(index+1) );
 
-export {getSuccess};
+export {getAdvertisements};

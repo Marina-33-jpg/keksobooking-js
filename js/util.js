@@ -48,6 +48,14 @@ const getRandomPositiveFloat  = (a, b, digits = 1) => {
   //метод возвращает строку, поэтому с помощью унарного плюса превращаем ее в число
   return +result.toFixed(digits);
 };
+/* получить массив случайной длины
 
-
+const getRandomLengthArray = (array) => {
+  const randomLengthArray = [];
+  for (let i = 0; i <= getRandomInteger(0, array.length); i++){
+    randomLengthArray.push(array[i]);
+  }
+  return randomLengthArray;
+};
+*/
 export {getRandomPositiveInteger, getRandomArrayElement, getRandomPositiveFloat, checkStringLength};
