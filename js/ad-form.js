@@ -1,20 +1,16 @@
-const adForm = document.querySelector('.ad-form');
+const adForm = document.querySelector('.ad-form'); //74 форма нового (вашего) объявления
 const formElements = adForm.children;
-const mapForm = document.querySelector('.map__filters');
+const mapForm = document.querySelector('.map__filters'); //26 форма фильтрации объявлений на карте
 const mapFilters = mapForm.children;
 
 //дезактивация формы
-
 const disableForm = () => {
-
   adForm.classList.add('ad-form--disabled');
-
   for (let i = 0; i < formElements.length; i++) {
     formElements[i].setAttribute('disabled', true);
   }
 
   mapForm.classList.add('map__filters--disabled');
-
   for (let i = 0; i < mapFilters.length; i++) {
     mapFilters[i].setAttribute('disabled', true);
   }
@@ -23,11 +19,8 @@ const disableForm = () => {
 disableForm();
 
 //активация формы
-
 const activateForm = () => {
-
   adForm.classList.remove('ad-form--disabled');
-
   for (let i = 0; i < formElements.length; i++) {
     formElements[i].removeAttribute('disabled');
   }
@@ -36,9 +29,7 @@ const activateForm = () => {
 activateForm();
 
 const activateFilters = () => {
-
   mapForm.classList.remove('map__filters--disabled');
-
   for (let i = 0; i < mapFilters.length; i++) {
     mapFilters[i].removeAttribute('disabled');
   }
@@ -48,7 +39,6 @@ activateFilters();
 
 
 //валидация формы
-
 const pristine = new Pristine(adForm,
   {
     classTo: 'ad-form__element',
@@ -58,8 +48,7 @@ const pristine = new Pristine(adForm,
     errorTextClass: 'ad-form__error'
   }, false);
 
-//валидация заголовка
-
+//валидация заголовка -90
 function validateTitle (value) {
   return value.length >= 30 && value.length <= 100;
 }
@@ -70,8 +59,7 @@ pristine.addValidator(
   'От 30 до 100 символов'
 );
 
-//валидация цены
-
+//валидация цены -108
 function validatePrice (value) {
   return Number(value) <= 100000;
 }
@@ -83,10 +71,8 @@ pristine.addValidator(
 );
 
 //валидация количества комнат и количества мест
-
-const rooms = adForm.querySelector('[name="rooms"]:checked');
-const capacity = adForm.querySelector('[name="capacity"]:checked');
-
+const rooms = adForm.querySelector('[name="rooms"]:checked'); //125
+const capacity = adForm.querySelector('[name="capacity"]:checked'); //134
 const quantityRoomsForGuests = {
   '1': '1',
   '2': ['2', '1'],
@@ -104,7 +90,6 @@ pristine.addValidator(rooms, validateCapacity);
 //реализует логику обработки пользовательского ввода для полей
 const price = adForm.querySelector('#price');
 let type;
-
 const minPrice = {
   'bungalow': 0,
   'flat': 1000,
@@ -132,7 +117,6 @@ function onTypeChange (evt) {
 adForm.querySelectorAll('[name="type"]').forEach((item) => item.addEventListener('change', onTypeChange));
 
 //время заезда/выезда
-
 const timein = adForm.querySelector('#timein');
 const timeout = adForm.querySelector('#timeout');
 
@@ -152,7 +136,6 @@ pristine.addValidator(timein, validateTimeIn, getTimeErrorMessage);
 pristine.addValidator(timeout, validateTimeout, getTimeErrorMessage);
 
 //валидация перед отправкой формы
-
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();

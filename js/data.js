@@ -11,9 +11,13 @@ const Descriptions = [
 
 const Titles = [
   'Милая, уютная квартира в центре Токио',
+  'Хостел имеет очень хорошее расположение.',
+  'Очень красивый уютный и комфортабельный отель, очень близко к центру города.',
+  'Прекрасное местоположение, в самом центре всех достопримечательностей.',
   'Уютное гнездышко для молодоженов',
   'Комфортное жилье для большой семьи с маленькими питомцами',
   'Уютный домик с садом',
+  'Очень уютное расположение рядом с рекой.',
   'Шикарный отдых на берегу моря на своем пляже'
 ];
 
@@ -91,9 +95,9 @@ const createAuthor = (index) => ({
 const createOffer = (loc) => ({
   title: getRandomArrayElement(Titles),
   address: createAddress(loc),
-  price: getRandomPositiveInteger(10, 100),
-  type:  getRandomArrayElement(['palace', 'flat', 'house', 'bungalow', 'hotel']),
-  rooms:  getRandomPositiveInteger(1, 6),
+  price: getRandomPositiveInteger(1000, 100000),
+  type:  getRandomArrayElement(["palace", "flat", "house", "bungalow", "hotel"]),
+  rooms:  getRandomPositiveInteger(1, 5),
   guests: getRandomPositiveInteger(1, 10),
   checkin:  getRandomArrayElement(['12:00', '13:00','14:00']),
   checkout: getRandomArrayElement(['12:00', '13:00','14:00']),
@@ -113,6 +117,6 @@ const createAdvertisement = (index) => {
 }
 
 //собирает в массив из 10 элементов из обьектов createSuccess
-const getAdvertisements = () => Array.from({length:3}, (_, index) => createAdvertisement(index+1) );
+const getAdvertisements = () => Array.from({length:2}, (_, index) => createAdvertisement(index+1) );
 
 export {getAdvertisements};
