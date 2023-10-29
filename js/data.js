@@ -38,9 +38,21 @@ const Features = [
 ];
 
 const PhotoUrls = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6Awr1i0Iw.jpg'
+  [],
+  [  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg'],
+  [  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg'],
+  [  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6Awr1i0Iw.jpg'],
+  [ 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6Awr1i0Iw.jpg'],
+  [ 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg'],
+  [ 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6Awr1i0Iw.jpg'],
+  [
+    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+    'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6Awr1i0Iw.jpg'
+  ]
 ];
 
 
@@ -95,7 +107,7 @@ const createAuthor = (index) => ({
 const createOffer = (loc) => ({
   title: getRandomArrayElement(Titles),
   address: createAddress(loc),
-  price: getRandomPositiveInteger(1000, 100000),
+  price: getRandomPositiveInteger(500, 10000),
   type:  getRandomArrayElement(["palace", "flat", "house", "bungalow", "hotel"]),
   rooms:  getRandomPositiveInteger(1, 5),
   guests: getRandomPositiveInteger(1, 10),
@@ -117,6 +129,6 @@ const createAdvertisement = (index) => {
 }
 
 //собирает в массив из 10 элементов из обьектов createSuccess
-const getAdvertisements = () => Array.from({length:2}, (_, index) => createAdvertisement(index+1) );
+const getAdvertisements = () => Array.from({length:3}, (_, index) => createAdvertisement(index+1) );
 
 export {getAdvertisements};
