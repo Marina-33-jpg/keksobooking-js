@@ -48,7 +48,7 @@ const pristine = new Pristine(adForm,
     errorTextClass: 'ad-form__error'
   }, false);
 
-//валидация заголовка -90
+//валидация заголовка объявления       -90
 function validateTitle (value) {
   return value.length >= 30 && value.length <= 100;
 }
@@ -59,7 +59,7 @@ pristine.addValidator(
   'От 30 до 100 символов'
 );
 
-//валидация цены -108
+//валидация максимальной цены  за ночь   -108
 function validatePrice (value) {
   return Number(value) <= 100000;
 }
@@ -70,7 +70,7 @@ pristine.addValidator(
   'Максимальная цена — 100000'
 );
 
-//валидация количества комнат и количества мест
+//валидация количества комнат и количества мест      -130
 const rooms = adForm.querySelector('[name="rooms"]:checked'); //125
 const capacity = adForm.querySelector('[name="capacity"]:checked'); //134
 const quantityRoomsForGuests = {
@@ -82,10 +82,16 @@ const quantityRoomsForGuests = {
 
 function validateCapacity () {
   return quantityRoomsForGuests[rooms.value].includes(capacity.value);
+ //выбор количества комнат включает выбранное количество гостей
 }
 
-pristine.addValidator(capacity, validateCapacity);
-pristine.addValidator(rooms, validateCapacity);
+pristine.addValidator( rooms,   validateCapacity, '100 комнат не для гостей. На ваш выбор комнат не допустимо столько гостей');
+pristine.addValidator(capacity, validateCapacity, 'На ваш выбор комнат не допустимо столько гостей');
+
+capacity.addEventListener('change', () => {
+  pristine.validate(rooms);
+});
+
 
 //реализует логику обработки пользовательского ввода для полей
 const price = adForm.querySelector('#price');
@@ -108,17 +114,21 @@ function getPriceErrorMessage () {
 
 pristine.addValidator(price, validateMinPrice, getPriceErrorMessage);
 
+
 function onTypeChange (evt) {
   price.placeholder = minPrice[evt.target.value];
   type = evt.target.value;
   pristine.validate(price);
 }
-
+//??????
 adForm.querySelectorAll('[name="type"]').forEach((item) => item.addEventListener('change', onTypeChange));
 
 //время заезда/выезда
-const timein = adForm.querySelector('#timein');
-const timeout = adForm.querySelector('#timeout');
+const timein = adForm.querySelector('#timein'); // -118
+const timeout = adForm.querySelector('#timeout'); //  123
+const timeinAndTimeout = adForm.querySelector('.ad-form__element--time'); //  -116
+
+
 
 function validateTimeIn (value) {
   return value === timeout.value;
@@ -127,13 +137,14 @@ function validateTimeIn (value) {
 function validateTimeout(value) {
   return value === timein.value;
 }
+pristine.addValidator(timein,  validateTimeIn,  'Время заезда должно совпадать с временем выезда');
+pristine.addValidator(timeout, validateTimeout, 'Время заезда должно совпадать с временем выезда');
 
-function getTimeErrorMessage() {
-  return 'Время заезда должно совпадать с временем выезда';
-}
-
-pristine.addValidator(timein, validateTimeIn, getTimeErrorMessage);
-pristine.addValidator(timeout, validateTimeout, getTimeErrorMessage);
+timeinAndTimeout.addEventListener('change', (evt) => {
+  if (evt.target.value) {
+    timeout.value = timein.value = evt.target.value;
+  }
+});
 
 //валидация перед отправкой формы
 adForm.addEventListener('submit', (evt) => {
