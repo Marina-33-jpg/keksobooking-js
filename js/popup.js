@@ -1,4 +1,4 @@
-import {getAdvertisements} from '/js/data.js';
+import {getData} from '/js/data.js';
 
 const offerTypes = {
   "flat": "Квартира",
@@ -90,7 +90,8 @@ const renderAdvertisements = (datas) => {
   container.append(fragment);
 };*/
 
-const datas = getAdvertisements();
+/*
+const datas = getData();
 const first = datas[1];
 console.log(first);
 //Для вставки элементов использовать DocumentFragment
@@ -98,5 +99,5 @@ const fragment = document.createDocumentFragment();
 const dataElement = createPopup(first);
 fragment.append(dataElement);
 document.querySelector('#map-canvas').append(fragment);
-
+*/
 export { createPopup };

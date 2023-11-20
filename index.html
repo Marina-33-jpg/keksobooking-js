@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="nouislider/nouislider.css">
+  <link rel="stylesheet" href="leaflet/leaflet.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Кексобукинг</title>
 </head>
@@ -19,7 +21,7 @@
     <section class="map">
 
       <!-- Блок для вставки карты -->
-      <div class="map__canvas" id="map-canvas"></div>
+      <div class="map__canvas" id="map-canvas" style="height: 500px;"></div>
 
       <!-- Фильтрация объявлений -->
       <div class="map__filters-container">
@@ -93,8 +95,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
-          <input id="address" name="address" type="text">
-          <!-- value="35.68950, 139.69200" readonly -->
+          <input id="address" name="address" type="text"  value="35.68950, 139.69200" readonly >
         </fieldset>
           <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -108,10 +109,10 @@
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-          <input id="price" name="price" type="number" placeholder="1000" max="100000" required
+          <input id="price" name="price" type="number" placeholder="1000" max="100000" step="1000" required
              data-pristine-required-message="Обязательное поле"
              data-pristine-max-message="Максимальная цена 100000">
-          <div class="ad-form__slider"></div>
+          <div class="ad-form__slider" ></div>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time">
           <label class="ad-form__label" for="timein">Время заезда и выезда</label>
@@ -235,6 +236,8 @@
       <button type="button" class="error__button">Попробовать снова</button>
     </div>
   </template>
+  <script src="/nouislider/nouislider.js"></script>
+  <script src="/leaflet/leaflet.js"></script>
   <script src="/pristine/pristine.min.js"></script>
   <script src="/js/main.js" type="module"></script>
  <!--<script src="./js/script.js"></script> -->

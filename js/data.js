@@ -129,6 +129,6 @@ const createAdvertisement = (index) => {
 }
 
 //собирает в массив из 10 элементов из обьектов createSuccess
-const getAdvertisements = () => Array.from({length:3}, (_, index) => createAdvertisement(index+1) );
+const getData = () => Array.from({length:10}, (_, index) => createAdvertisement(index+1) );
 
-export {getAdvertisements};
+export {getData};
